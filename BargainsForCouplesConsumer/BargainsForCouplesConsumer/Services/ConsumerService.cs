@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web;
 using BargainsForCouplesConsumer.Interfaces;
 using BargainsForCouplesConsumer.Models;
 using BargainsForCouplesConsumer.Models.Enums;
@@ -41,7 +40,7 @@ namespace BargainsForCouplesConsumer.Services
 
         private async Task<string> GetUrlForApiCall(int destinationId, int numberOfNights)
         {
-            var uriBuilder = new UriBuilder(_configuration.GetValue<string>("ApiUrl"))
+            var uriBuilder = new UriBuilder(_configuration.GetValue<string>("ApiUrl") + _configuration.GetValue<string>("ApiMethod"))
             {
                 Port = -1,
                 Query = await new FormUrlEncodedContent(new Dictionary<string, string>()

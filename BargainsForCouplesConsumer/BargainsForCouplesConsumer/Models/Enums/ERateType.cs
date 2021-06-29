@@ -1,6 +1,6 @@
 ﻿namespace BargainsForCouplesConsumer.Models.Enums
 {
-    public enum RateType
+    public enum ERateType
     {
         None = 0,
         PerNight = 1,

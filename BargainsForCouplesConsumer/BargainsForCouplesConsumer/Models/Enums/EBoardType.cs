@@ -1,6 +1,6 @@
 ﻿namespace BargainsForCouplesConsumer.Models.Enums
 {
-    public enum BoardType
+    public enum EBoardType
     {
         None = 0,
         NoMeals = 1,

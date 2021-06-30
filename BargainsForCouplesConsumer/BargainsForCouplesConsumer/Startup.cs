@@ -1,5 +1,5 @@
-using Autofac;
-using BargainsForCouplesConsumer.IocContainer;
+using BargainsForCouplesConsumer.Interfaces;
+using BargainsForCouplesConsumer.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
@@ -21,19 +21,13 @@ namespace BargainsForCouplesConsumer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IConsumerService, ConsumerService>();
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
-        }
-
-        // This method is responsible for configuring the Autofac IoC Container.
-        // It also overrides any configuration made in ConfigureServices
-        public void ConfigureContainer(ContainerBuilder builder)
-        {
-            builder.RegisterModule<MainModule>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

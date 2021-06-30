@@ -1,24 +1,31 @@
-<h1 id="tableLabel">Weather forecast</h1>
+<h1 id="tableLabel">Bargains for Couples</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
+<p>This component demonstrates fetching data from an API.</p>
 
-<p *ngIf="!forecasts"><em>Loading...</em></p>
+<p *ngIf="!bargains"><em>Please input a Destination Id and the Number of Nights</em></p>
+<div class="md-form">
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="forecasts">
+  <label for="destinationId">Destination Id</label>
+  <input mdbInput type="number" name="destinationId" [(ngModel)]="destinationId" id="destinationId" class="form-control">
+  <label for="numberOfNights">Number of Nights</label>
+  <input mdbInput type="number" name="numberOfNights" [(ngModel)]="numberOfNights" id="numberOfNights" class="form-control">
+  <button (click)="fetchBargains()" mdbBtn color="info" outline="true" block="true" class="z-depth-0 my-4 waves-effect"
+    mdbWavesEffect class="btn-primary">Find Hotels</button>
+</div>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="bargains">
   <thead>
     <tr>
-      <th>Date</th>
-      <th>Temp. (C)</th>
-      <th>Temp. (F)</th>
-      <th>Summary</th>
+      <th>Hotel Name</th>
+      <th>Price for No Meals</th>
+      <th>Price for Half Board</th>
+      <th>Price for Full Board</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let forecast of forecasts">
-      <td>{{ forecast.date }}</td>
-      <td>{{ forecast.temperatureC }}</td>
-      <td>{{ forecast.temperatureF }}</td>
-      <td>{{ forecast.summary }}</td>
+    <tr *ngFor="let bargain of bargains">
+      <td>{{ bargain.hotel.name }}</td>
+      <td *ngFor="let rate of bargain.rates">{{ rate.value }}</td>
     </tr>
   </tbody>
 </table>
